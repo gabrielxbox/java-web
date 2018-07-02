@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+    </h:head>
+    <body>
+
+        <h:form>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="center">
+                <div style="margin: 20px">
+                    <center>
+                        <h1>Kido Care</h1>
+                    </center>
+                        <p:outputPanel>    
+                            <p:outputLabel value="#{mainBeam.usuario.nome}"/> : 
+                            <p:commandButton value="Logout" action="#{mainBeam.logout()}"/>
+                            <p:commandButton value="Editar Usuario" action="#{mainBeam.entrarEditUsuario()}" />
+                        </p:outputPanel>
+
+                        <br/>
+                        <br/>
+                        Dependente: 
+                        <p:outputPanel>    
+                            <p:selectOneMenu value="#{mainBeam.dependenteEscolhido}" valueChangeListener="#{mainBeam.changeDependente()}">
+                                <p:ajax listener="#{mainBeam.changeDependente()}" />
+                                <f:selectItems value="#{mainBeam.listaDependentes}" />
+                            </p:selectOneMenu>
+                            <p:commandButton value="Adicionar Dependente" action="newDependente" />
+                            <p:commandButton value="Editar Dependente" action="#{mainBeam.entrarEditDependente()}" />
+                        </p:outputPanel>
+                        Lista de Vacinas
+                        <p:outputPanel>  
+                        <p:commandButton value="Gerar Vacinas" action="#{mainBeam.gerarVacinas()}"/>
+                        <p:commandButton value="Adicionar Vacina" action="#{mainBeam.entrarNovaVacina()}"/>
+                        </p:outputPanel>
+
+                    <br/><br/>
+                    <h:form id="formListagem">
+                    <p:poll interval="2" update="tabVac" />
+                    <p:dataTable id="tabVac" var="vacinas" value="#{mainBeam.dependente.vacinas}">
+                        <p:column headerText="Vacina Nome">
+                            <h:outputText value="#{vacinas.nome}" />
+                        </p:column>
+
+                        <p:column headerText="Data">
+                            <h:outputText value="#{vacinas.data_prevista}" />
+                        </p:column>
+                        <center>
+                            <p:column headerText="Ações">
+                                <p:commandButton value="Confirmar" action="#{mainBeam.entrarConfirmarVacina(vacinas)}"/>
+                                <p:commandButton value="Editar" action="#{mainBeam.entrarEditarVacina(vacinas)}"/>
+                                <p:commandButton value="Remover"  
+                                                 update=":mensagem:formListagem:tabVac">
+                                    <p:confirm header="Confirmação" message="Deseja excruier a vacina "
+                                               icon="ui-icon-alert"/>
+                                    <f:attribute name="vacinaselecionada" value="#{vacinas}"/>
+                                  </p:commandButton>
+                            </p:column>
+                        </center>
+                       </p:dataTable>
+                    <p:confirmDialog global="true">
+                        <p:commandButton value="Sim" type="button"
+                                         styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                        <p:commandButton value="Não" type="button"
+                                         styleClass="ui-confirmdialog-no" icon="ui-icon-clase"/>
+                    </p:confirmDialog>
+                       </h:form>
+                </div>
+            </p:layoutUnit>
+        </p:layout>
+        </h:form>
+    </body>
+</html>

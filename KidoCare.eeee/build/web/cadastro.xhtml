@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+ xmlns:f="http://java.sun.com/jsf/core"
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Cria conta</title>
+    </h:head>
+    <style>p.alinha{padding-left: 5.8em; }</style>
+    <h:body >
+  <h:form>
+        <p:layout fullPage="true">  
+            <p:layoutUnit position="center">
+                <center>
+                    
+                    <div class="ui-g">
+                        <div class="ui-g-10">
+                            <h:form>
+                                <div class="fancy">
+                                <h:panelGrid   columns="1">
+                                    <table>
+                                    <p> 
+                                    <p:inputText value="#{mainBeam.usuario.id_usuario}" type="hidden" />
+                                    <p:messages id="message" />
+                                    <p:outputLabel value= "Nome Completo: "></p:outputLabel>
+                                    <p:inputText id="nome" label="Nome" value="#{mainBeam.usuario.nome}"
+                                                 size="55"      maxlength="50" required="true"
+                                                 requiredMessage="Porfavor informar o nome completo">
+                                        <f:validateLength minimum="4" maximum="70"/>
+                                    </p:inputText>
+                                </p>
+                                <p:outputLabel  value="email: "></p:outputLabel>
+                                <p:inputText id="email" label="email" value="#{mainBeam.usuario.email}" size="55" maxlength="50" rendered="true"/><br/>
+                                <p>
+                                    Senha: <p:password  label="Password " match="confirm_password" required="true" value="#{mainBeam.usuario.senha}" />
+                                    Confirma Senha: <p:password id="confirm_password" label="Password" required="true" value="#{mainBeam.usuario.senha}">
+                                    </p:password><br/>
+                                </p>
+                                </table>
+                                </h:panelGrid>
+                                </div>
+                                <div>
+                                <p:commandButton value="gravar" update="message" action="#{mainBeam.salvarUsuario()}"></p:commandButton>
+                            
+                                <p:commandButton value="voltar" action="#{mainBeam.sairNovoUsuario()}"  ></p:commandButton>
+                                 </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </center>
+            </p:layoutUnit>     
+        </p:layout>
+
+            </h:form>
+    </h:body> 
+
+</html>
+

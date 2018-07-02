@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Add Dependente</title>
+    </h:head>
+    <h:body>
+        <div>
+            <h:form>
+                <p:layout fullPage="true">
+                    <p:layoutUnit position="center">
+                        <p> <center><h1>Editar Dependente</h1></center>
+                             
+                        </p>
+                        <center>
+                            Nome Completo   <p:inputText   label="Nome Completo:" value="#{mainBeam.dependente.nome}"   
+                                                           size="75"      maxlength="50" required="true"
+                                                           requiredMessage="favor informar o nome completo campo obrigatorio">
+                                <f:validateLength minimum="4" maximum="70"/><br/>
+                            </p:inputText>
+                            <p>
+                                <p:outputLabel for="Data" value="Data" /><br/>
+                                <p:calendar id="Data" value="#{mainBeam.dependente.dtNasc}" showOn="button" /><br/>
+                            </p>
+                            <br/>
+                            <p:commandButton value="Salvar" action="#{mainBeam.editarDependente()}"></p:commandButton>
+                            <p:commandButton value="Voltar" action="main"></p:commandButton>
+                        </center>
+                    </p:layoutUnit>
+                </p:layout>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

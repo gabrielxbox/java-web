@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Confirmar Vacina</title>
+    </h:head>
+    <h:body>
+        
+    <h:form id="form">  
+                 <p:growl id="msgs" showDetail="true" />
+        <p:layout fullPage="true">
+            <p:layoutUnit position="center">
+               
+                   <p:messages id="message" />
+                   <center><h1>Confirmar Vacina</h1></center>
+                        <center>
+                     <h:panelGrid columns="1" >
+                         <center>        </center>
+                    Vacina: <p:inputText value="#{mainBeam.vacina.nome}" id="nome" label="Nome" 
+                                         size="50"      maxlength="50" required="true"
+                                         requiredMessage="favor informar o nome completo campo obrigatorio">
+                        <f:validateLength minimum="4" maximum="70"/><br/>
+
+                    </p:inputText>
+                    <p>
+                        <p:outputLabel for="Data" value="Data" /><br/>
+                        <p:calendar id="Data" value="#{mainBeam.vacina.data_aplicacao}"  size="50" showOn="button" /><br/>
+                     </p>
+                    </h:panelGrid>
+                   </center> 
+                        <div>
+                    <center>
+                             <h:panelGrid columns="2">
+                       
+                                  <p:commandButton value="Confirmar" action="#{mainBeam.confirmarVacina()}"/>
+                            <p:commandButton value="Cancelar" action="main"/> 
+                                     
+                            </h:panelGrid>
+                    </center>      
+                </div>
+              
+            </p:layoutUnit>
+        </p:layout> 
+        </h:form>  
+    </h:body>
+</html>
+
